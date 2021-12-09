@@ -1,0 +1,4 @@
+name: Shiftf
+version: '${project.version}'
+main: net.teamuni.shiftf.Shiftf
+api-version: 1.17
