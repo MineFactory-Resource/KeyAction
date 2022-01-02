@@ -3,4 +3,5 @@ commands:
   - 'seed'
   - 'weather clear'
   - 'time set night'
+
 executor: 'CONSOLE'

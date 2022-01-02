@@ -5,6 +5,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import java.util.List;
 
 
@@ -21,9 +22,9 @@ public final class Shiftf extends JavaPlugin implements Listener {
             priority = EventPriority.NORMAL
     )
     public void onPlayerSwapHandItemsEvent1(PlayerSwapHandItemsEvent event) {
-        List<String> commands = getConfig().getStringList("commands");
-        for (String command: commands) {
-            if (event.getPlayer().isSneaking()) {
+        if (event.getPlayer().isSneaking()) {
+            List<String> commands = getConfig().getStringList("commands");
+            for (String command : commands) {
                 event.getPlayer().performCommand(command);
             }
         }
