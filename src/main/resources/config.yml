@@ -1,2 +1,6 @@
-command: help
+commands:
+  - 'weather rain'         # place the command that you want to execute in ''
+  - 'seed'
+  - 'weather clear'
+  - 'time set night'
 executor: 'CONSOLE'
