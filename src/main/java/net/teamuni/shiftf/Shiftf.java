@@ -6,18 +6,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
+
+
 public final class Shiftf extends JavaPlugin implements Listener {
-    private static Shiftf instance;
 
     public void onEnable() {
-        instance = this;
-        this.getDataFolder().mkdir();
         this.getServer().getPluginManager().registerEvents(this, this);
         this.saveDefaultConfig();
-    }
-
-    public static Shiftf getInstance() {
-        return instance;
     }
 
     @EventHandler(
@@ -25,7 +21,10 @@ public final class Shiftf extends JavaPlugin implements Listener {
     )
     public void onPlayerSwapHandItemsEvent1(PlayerSwapHandItemsEvent event) {
         if (event.getPlayer().isSneaking()) {
-            event.getPlayer().performCommand(String.valueOf(getInstance().getConfig().get("command")));
+            List<String> commands = getConfig().getStringList("commands");
+            for (String command : commands) {
+                event.getPlayer().performCommand(command);
+            }
         }
     }
 }
