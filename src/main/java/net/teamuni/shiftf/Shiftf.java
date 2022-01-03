@@ -11,11 +11,9 @@ import java.util.List;
 
 public final class Shiftf extends JavaPlugin implements Listener {
 
-
     public void onEnable() {
         this.getDataFolder().mkdir();
         this.getServer().getPluginManager().registerEvents(this, this);
-        this.saveDefaultConfig();
     }
 
     @EventHandler(
