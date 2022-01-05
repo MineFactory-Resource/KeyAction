@@ -4,4 +4,8 @@ commands:
   - 'weather clear'
   - 'time set night'
 
-executor: 'CONSOLE'
+executor:
+  - 'CONSOLE'
+
+action:                     # place the key that you feel comfortable to use this Plugin.
+  - 'SHIFT'
