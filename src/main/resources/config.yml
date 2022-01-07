@@ -7,5 +7,5 @@ commands:
 executor:
   - 'CONSOLE'
 
-action:                     # place the key that you feel comfortable to use this Plugin.
-  - 'SHIFT'
+action:                     # place the key that you feel comfortable to use this Plugin. (SHIFT, F, SHIFT+F)
+  - 'F'
