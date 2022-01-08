@@ -1,7 +1,6 @@
 package net.teamuni.shiftf;
 
 
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,29 +21,11 @@ public final class Shiftf extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerToggleSneakEvent(PlayerToggleSneakEvent event) {
         Player player = event.getPlayer();
-        List<String> action = getConfig().getStringList("action");
+        String action = getConfig().getString("action");
 
-        if (action.contains("SHIFT")) {
-            if (player.isSneaking()) {
-                List<String> commands = getConfig().getStringList("commands");
-                for (String command : commands) {
-                    event.getPlayer().performCommand(command);
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerSwapHandItemsEvent2(PlayerSwapHandItemsEvent event) {
-        List<String> action = getConfig().getStringList("action");
-        if (action.contains("F")) {
-            Material offhand = event.getPlayer().getInventory().getItemInOffHand().getType();
+        if (action.equals("SHIFT")) {
             List<String> commands = getConfig().getStringList("commands");
-            if (offhand != Material.AIR) {
-                for (String command : commands) {
-                    event.getPlayer().performCommand(command);
-                }
-            } else {
+            if (player.isSneaking()) {
                 for (String command : commands) {
                     event.getPlayer().performCommand(command);
                 }
@@ -53,17 +34,26 @@ public final class Shiftf extends JavaPlugin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerSwapHandItemsEvent3(PlayerSwapHandItemsEvent event) {
+    public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) {
         Player player = event.getPlayer();
-        List<String> action = getConfig().getStringList("action");
+        String action = getConfig().getString("action");
 
-        if (action.contains("SHIFT+F")) {
+        if (action.equals("F")) {
+            String offhand = event.getPlayer().getInventory().getItemInOffHand().toString();
+            List<String> commands = getConfig().getStringList("commands");
+            if (event.getMainHandItem().toString().equals(offhand)) {
+                for (String command : commands) {
+                    event.getPlayer().performCommand(command);
+                }
+            }
+        } else if (action.equals("SHIFT+F")) {
+            List<String> commands = getConfig().getStringList("commands");
             if (player.isSneaking()) {
-                List<String> commands = getConfig().getStringList("commands");
                 for (String command : commands) {
                     event.getPlayer().performCommand(command);
                 }
             }
         }
+        event.setCancelled(true);
     }
 }
