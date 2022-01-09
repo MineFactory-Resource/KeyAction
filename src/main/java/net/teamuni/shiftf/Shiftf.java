@@ -31,12 +31,10 @@ public final class Shiftf extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerToggleSneakEvent(PlayerToggleSneakEvent event) {
-        if (action.equals("SHIFT")) {
-            if (event.getPlayer().isSneaking()) {
+        if (action.equals("SHIFT") && event.isSneaking()) {
                 PerformCommand(event.getPlayer());
             }
         }
-    }
 
     @EventHandler
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) {
@@ -46,6 +44,7 @@ public final class Shiftf extends JavaPlugin implements Listener {
         } else if (action.equals("SHIFT+F")) {
             if (event.getPlayer().isSneaking()) {
                 PerformCommand(event.getPlayer());
+                event.setCancelled(true);
             }
         }
     }
