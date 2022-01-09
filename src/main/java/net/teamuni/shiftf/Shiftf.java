@@ -40,9 +40,9 @@ public final class Shiftf extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) {
-        event.setCancelled(true);
         if (action.equals("F")) {
             PerformCommand(event.getPlayer());
+            event.setCancelled(true);
         } else if (action.equals("SHIFT+F")) {
             if (event.getPlayer().isSneaking()) {
                 PerformCommand(event.getPlayer());
