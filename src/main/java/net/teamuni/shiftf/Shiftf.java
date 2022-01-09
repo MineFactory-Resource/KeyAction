@@ -23,7 +23,7 @@ public final class Shiftf extends JavaPlugin implements Listener {
         this.commands = getConfig().getStringList("commands");
     }
 
-    private void PerformCommand(Player player) {
+    private void performCommand(Player player) {
         for (String command : commands) {
             player.performCommand(command);
         }
@@ -32,18 +32,18 @@ public final class Shiftf extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerToggleSneakEvent(PlayerToggleSneakEvent event) {
         if (action.equals("SHIFT") && event.isSneaking()) {
-                PerformCommand(event.getPlayer());
+                performCommand(event.getPlayer());
             }
         }
 
     @EventHandler
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) {
         if (action.equals("F")) {
-            PerformCommand(event.getPlayer());
+            performCommand(event.getPlayer());
             event.setCancelled(true);
         } else if (action.equals("SHIFT+F")) {
             if (event.getPlayer().isSneaking()) {
-                PerformCommand(event.getPlayer());
+                performCommand(event.getPlayer());
                 event.setCancelled(true);
             }
         }
