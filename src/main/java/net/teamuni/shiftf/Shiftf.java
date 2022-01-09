@@ -1,6 +1,7 @@
 package net.teamuni.shiftf;
 
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerSwapHandItemsEvent;
@@ -22,13 +23,17 @@ public final class Shiftf extends JavaPlugin implements Listener {
         this.commands = getConfig().getStringList("commands");
     }
 
+    private void PerformCommand(Player player) {
+        for (String command : commands) {
+            player.performCommand(command);
+        }
+    }
+
     @EventHandler
     public void onPlayerToggleSneakEvent(PlayerToggleSneakEvent event) {
         if (action.equals("SHIFT")) {
             if (event.getPlayer().isSneaking()) {
-                for (String command : commands) {
-                    event.getPlayer().performCommand(command);
-                }
+                PerformCommand(event.getPlayer());
             }
         }
     }
@@ -37,14 +42,10 @@ public final class Shiftf extends JavaPlugin implements Listener {
     public void onPlayerSwapHandItemsEvent(PlayerSwapHandItemsEvent event) {
         event.setCancelled(true);
         if (action.equals("F")) {
-            for (String command : commands) {
-                event.getPlayer().performCommand(command);
-            }
+            PerformCommand(event.getPlayer());
         } else if (action.equals("SHIFT+F")) {
             if (event.getPlayer().isSneaking()) {
-                for (String command : commands) {
-                    event.getPlayer().performCommand(command);
-                }
+                PerformCommand(event.getPlayer());
             }
         }
     }
