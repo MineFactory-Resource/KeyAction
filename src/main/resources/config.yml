@@ -1,4 +1,4 @@
-commands:                  # If there are more than one command, it will be executed in sequentially
+commands:                       # If there are more than one command, it will be executed in sequentially
   - 'weather rain'         # place the command that you want to execute in ''
   - 'seed'
   - 'weather clear'
