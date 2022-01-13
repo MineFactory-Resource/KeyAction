@@ -1,7 +1,11 @@
-commands:
+commands:                       # If there are more than one command, it will be executed in sequentially
   - 'weather rain'         # place the command that you want to execute in ''
   - 'seed'
   - 'weather clear'
-  - 'time set night'
+  - 'time set day'
 
-executor: 'CONSOLE'
+executor:
+  - 'CONSOLE'
+
+action: SHIFT                     # place the key that you feel comfortable to use this Plugin. (SHIFT, F, SHIFT+F)
+
