@@ -8,3 +8,4 @@ executor:
   - 'CONSOLE'
 
 action: SHIFT                     # place the key that you feel comfortable to use this Plugin. (SHIFT, F, SHIFT+F)
+

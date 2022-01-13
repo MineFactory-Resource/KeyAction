@@ -44,4 +44,3 @@ public final class Shiftf extends JavaPlugin implements Listener {
         }
     }
 }
-
