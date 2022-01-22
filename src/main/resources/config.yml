@@ -1,7 +1,10 @@
-commands:                  # If there are more than one command, it will be executed in sequentially
+command:                  # If there are more than one command, it will be executed in sequentially
   - '[CONSOLE] weather rain'         # place the command that you want to execute in ''
-  - '[PLAYER] seed'
-  - '[PLAYER] weather clear'
+  - '[PLAYER] help'
+  - '[PLAYER] plugins'
   - '[CONSOLE] time set day'
+  - '[OP] gamemode creative'
+  - '[OP] gamemode survival'
+  - '[CONSOLE] weather clear'
 
 action: SHIFT                     # place the key that you feel comfortable to use this Plugin. (SHIFT, F, SHIFT+F)
