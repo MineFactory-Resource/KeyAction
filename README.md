@@ -5,7 +5,7 @@
 
 ## 플러그인 적용법
 1. [Releases](https://github.com/MineFactory-Resource/KeyCommand/releases) 항목에서 최신 버전의 플러그인 파일을 다운로드합니다.
-2. 서버의 plugins 폴더에 다운로드 받은 *.jar 파일을 넣기
+2. 다운로드한 *.jar 파일을 플러그인 디렉토리에 저장합니다.
 
 ## 플러그인 config.yml 사용 방법
 config.yml 양식은 아래와 같습니다.
