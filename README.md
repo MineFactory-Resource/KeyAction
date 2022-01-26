@@ -45,5 +45,3 @@ command:
 
 action: SHIFT                    # SHIFT 키 입력 시 설정한 명령어들이 실행됩니다.
 ```
-
-## Permission

@@ -40,7 +40,7 @@ public final class Shiftf extends JavaPlugin implements Listener {
     }
 
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "KeyAction Disabled!");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[KeyAction] Disabled!");
     }
 
     private void performPlayerCommand(Player player) {
