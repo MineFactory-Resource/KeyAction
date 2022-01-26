@@ -23,7 +23,7 @@ public final class Shiftf extends JavaPlugin implements Listener {
     List<String> opCommands;
 
     public void onEnable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "KeyAction Enabled!");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "[KeyAction] Enabled!");
         this.getServer().getPluginManager().registerEvents(this, this);
         this.saveDefaultConfig();
         this.action = getConfig().getString("action");
