@@ -14,7 +14,7 @@ None
 1. [Releases](https://github.com/MineFactory-Resource/KeyCommand/releases) 항목에서 최신 버전의 플러그인 파일을 다운로드합니다.
 2. 다운로드한 *.jar 파일을 플러그인 디렉토리에 저장합니다.
 
-## config.yml
+## Feature
 config.yml 양식은 아래와 같습니다.
 ```yaml
 command:
@@ -45,3 +45,9 @@ command:
 
 action: SHIFT                    # SHIFT 키 입력 시 설정한 명령어들이 실행됩니다.
 ```
+
+## Commands
+None
+
+## Permissions
+None
