@@ -2,7 +2,6 @@ package net.teamuni.shiftf;
 
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,7 +22,6 @@ public final class Shiftf extends JavaPlugin implements Listener {
     List<String> opCommands;
 
     public void onEnable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "[KeyAction] Enabled!");
         this.getServer().getPluginManager().registerEvents(this, this);
         this.saveDefaultConfig();
         this.action = getConfig().getString("action");
@@ -37,10 +35,6 @@ public final class Shiftf extends JavaPlugin implements Listener {
         this.opCommands = commands.stream()
                 .filter(o -> o.trim().contains("[OP]"))
                 .collect(Collectors.toList());
-    }
-
-    public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "[KeyAction] Disabled!");
     }
 
     private void performPlayerCommand(Player player) {
