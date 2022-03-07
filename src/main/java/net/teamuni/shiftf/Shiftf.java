@@ -40,26 +40,47 @@ public final class Shiftf extends JavaPlugin implements Listener {
 
     private void performPlayerCommand(Player player) {
         for (String playerCommand : playerCommands) {
-            player.performCommand(PlaceholderAPI.setPlaceholders(player, playerCommand).substring(9));
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                player.performCommand(PlaceholderAPI.setPlaceholders(player, playerCommand).substring(9));
+            } else {
+                player.performCommand(playerCommand.substring(9));
+            }
         }
     }
 
     private void performConsoleCommand(Player player) {
         for (String consoleCommand : consoleCommands) {
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), PlaceholderAPI.setPlaceholders(player, consoleCommand).substring(10));
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), PlaceholderAPI.setPlaceholders(player, consoleCommand).substring(10));
+            } else {
+                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), consoleCommand.substring(10));
+            }
         }
     }
 
     private void performOpCommand(Player player) {
         for (String opCommand : opCommands) {
-            if (player.isOp()) {
-                player.performCommand(PlaceholderAPI.setPlaceholders(player, opCommand).substring(5));
-            } else {
-                try {
-                    player.setOp(true);
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                if (player.isOp()) {
                     player.performCommand(PlaceholderAPI.setPlaceholders(player, opCommand).substring(5));
-                } finally {
-                    player.setOp(false);
+                } else {
+                    try {
+                        player.setOp(true);
+                        player.performCommand(PlaceholderAPI.setPlaceholders(player, opCommand).substring(5));
+                    } finally {
+                        player.setOp(false);
+                    }
+                }
+            } else {
+                if (player.isOp()) {
+                    player.performCommand(opCommand.substring(5));
+                } else {
+                    try {
+                        player.setOp(true);
+                        player.performCommand(opCommand.substring(5));
+                    } finally {
+                        player.setOp(false);
+                    }
                 }
             }
         }
