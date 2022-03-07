@@ -1,5 +1,6 @@
 package net.teamuni.shiftf;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -39,26 +40,47 @@ public final class Shiftf extends JavaPlugin implements Listener {
 
     private void performPlayerCommand(Player player) {
         for (String playerCommand : playerCommands) {
-            player.performCommand(playerCommand.substring(9));
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                player.performCommand(PlaceholderAPI.setPlaceholders(player, playerCommand).substring(9));
+            } else {
+                player.performCommand(playerCommand.substring(9));
+            }
         }
     }
 
-    private void performConsoleCommand() {
+    private void performConsoleCommand(Player player) {
         for (String consoleCommand : consoleCommands) {
-            Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), consoleCommand.substring(10));
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), PlaceholderAPI.setPlaceholders(player, consoleCommand).substring(10));
+            } else {
+                Bukkit.dispatchCommand(Bukkit.getServer().getConsoleSender(), consoleCommand.substring(10));
+            }
         }
     }
 
     private void performOpCommand(Player player) {
         for (String opCommand : opCommands) {
-            if (player.isOp()) {
-                player.performCommand(opCommand.substring(5));
+            if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+                if (player.isOp()) {
+                    player.performCommand(PlaceholderAPI.setPlaceholders(player, opCommand).substring(5));
+                } else {
+                    try {
+                        player.setOp(true);
+                        player.performCommand(PlaceholderAPI.setPlaceholders(player, opCommand).substring(5));
+                    } finally {
+                        player.setOp(false);
+                    }
+                }
             } else {
-                try {
-                    player.setOp(true);
+                if (player.isOp()) {
                     player.performCommand(opCommand.substring(5));
-                } finally {
-                    player.setOp(false);
+                } else {
+                    try {
+                        player.setOp(true);
+                        player.performCommand(opCommand.substring(5));
+                    } finally {
+                        player.setOp(false);
+                    }
                 }
             }
         }
@@ -68,7 +90,7 @@ public final class Shiftf extends JavaPlugin implements Listener {
     public void onPlayerToggleSneakEvent(PlayerToggleSneakEvent event) {
         if (action.equals("SHIFT") && event.isSneaking()) {
             performPlayerCommand(event.getPlayer());
-            performConsoleCommand();
+            performConsoleCommand(event.getPlayer());
             performOpCommand(event.getPlayer());
         }
     }
@@ -78,7 +100,7 @@ public final class Shiftf extends JavaPlugin implements Listener {
         if (action.equals("F") || action.equals("SHIFT+F") && event.getPlayer().isSneaking()) {
             event.setCancelled(true);
             performPlayerCommand(event.getPlayer());
-            performConsoleCommand();
+            performConsoleCommand(event.getPlayer());
             performOpCommand(event.getPlayer());
         }
     }

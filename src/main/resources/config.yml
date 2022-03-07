@@ -3,8 +3,9 @@ command:                  # If there are more than one command, it will be execu
   - '[PLAYER] help'
   - '[PLAYER] plugins'
   - '[CONSOLE] time set day'
-  - '[OP] gamemode creative'
-  - '[OP] gamemode survival'
-  - '[CONSOLE] weather clear'
+  - '[OP] say The players in the server: %playerlist_all,normal,yes,list%'
+  - '[OP] say The food level of %player_name% is %player_food_level%'
+  - '[CONSOLE] deop %player_name%'
+  - '[CONSOLE] op %player_name%'
 
 action: SHIFT                     # place the key that you feel comfortable to use this Plugin. (SHIFT, F, SHIFT+F)

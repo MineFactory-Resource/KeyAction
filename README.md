@@ -3,12 +3,13 @@
 ## Description
 '특정한 키 입력'을 통해 사용자가 설정한 '명령어'를 '지정한 레벨'에서 실행시킬 수 있도록 해주는 플러그인입니다.
 
+해당 플러그인은 PlaceholderAPI를 지원합니다.
 ### Use Spigot Version: 
 1.17.1  
 ### Tested Spigot Version: 
 1.17.1  
 ### Required Plugin: 
-None
+PlaceholderAPI (Optional)
 
 ## Install Guide
 1. [Releases](https://github.com/MineFactory-Resource/KeyCommand/releases) 항목에서 최신 버전의 플러그인 파일을 다운로드합니다.
